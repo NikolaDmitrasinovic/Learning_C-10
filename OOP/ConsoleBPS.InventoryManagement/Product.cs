@@ -42,8 +42,9 @@ namespace ConsoleBPS.InventoryManagement
             }
         }
 
-        public int amountInStock { get; private set; }
-        public bool isBelowStoctThreshold { get; private set; }
+        public UnitType UnitType { get; private set; }
+        public int AmountInStock { get; private set; }
+        public bool IsBelowStoctThreshold { get; private set; }
 
         public Product(int id, string name)
         {
@@ -51,37 +52,76 @@ namespace ConsoleBPS.InventoryManagement
             Name = name;
         }
 
+        public Product(int id) : this(id, string.Empty)
+        {
+        }
+
+        public Product(int id, string name, string? description, UnitType unitType, int maxAmountInStock)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            UnitType = unitType;
+
+            maxItemsInStock = maxAmountInStock;
+
+            if (AmountInStock < 10)
+            {
+                IsBelowStoctThreshold = false;
+            }
+        }
+
         public void UseProduct(int items)
         {
-            if (items <= amountInStock)
+            if (items <= AmountInStock)
             {
-                amountInStock -= items;
+                AmountInStock -= items;
 
                 UpdateLowStock();
 
-                Log($"Amount int stock updated. Now {amountInStock} items in stock.");
+                Log($"Amount int stock updated. Now {AmountInStock} items in stock.");
             }
             else
             {
                 Log(
-                    $"Not enough items on stock for {CreateSimpleProductRepresentation()}. {amountInStock} available but {items} requested.");
+                    $"Not enough items on stock for {CreateSimpleProductRepresentation()}. {AmountInStock} available but {items} requested.");
             }
         }
 
         public void IncreaseStock()
         {
-            amountInStock++;
+            AmountInStock++;
+        }
+
+        public void IncreaseStock(int amount)
+        {
+            int newStock = AmountInStock + amount;
+
+            if (newStock <= maxItemsInStock)
+            {
+                AmountInStock += amount;
+            }
+            else
+            {
+                AmountInStock = maxItemsInStock;
+                Log($"{CreateSimpleProductRepresentation} stock overflow. {newStock - AmountInStock} item(s) ordered that couldn't be stored.");
+            }
+
+            if (AmountInStock > 10)
+            {
+                IsBelowStoctThreshold = false;
+            }
         }
 
         private void DecreaseStock(int items, string reason)
         {
-            if (items <= amountInStock)
+            if (items <= AmountInStock)
             {
-                amountInStock -= items;
+                AmountInStock -= items;
             }
             else
             {
-                amountInStock = 0;
+                AmountInStock = 0;
             }
 
             UpdateLowStock();
@@ -91,16 +131,32 @@ namespace ConsoleBPS.InventoryManagement
 
         public string DisplayDetailsShrot()
         {
-            return $"{id}. {name} \n{amountInStock} item(s) in stock";
+            return $"{id}. {name} \n{AmountInStock} item(s) in stock";
         }
 
         public string DisplayDetailsFull()
         {
             StringBuilder sb = new();
 
-            sb.Append($"{id} {name} \n{description}\n{amountInStock} item(s) in stock");
+            sb.Append($"{id} {name} \n{description}\n{AmountInStock} item(s) in stock");
 
-            if (isBelowStoctThreshold)
+            if (IsBelowStoctThreshold)
+            {
+                sb.Append(("\n!!STOCK Low!!"));
+            }
+
+            return sb.ToString();
+        }
+
+        public string DisplayDetailsFull(string extraDetails)
+        {
+            StringBuilder sb = new();
+
+            sb.Append($"{id} {name} \n{description}\n{AmountInStock} item(s) in stock");
+
+            sb.Append(extraDetails);
+
+            if (IsBelowStoctThreshold)
             {
                 sb.Append(("\n!!STOCK Low!!"));
             }
@@ -110,9 +166,9 @@ namespace ConsoleBPS.InventoryManagement
 
         private void UpdateLowStock()
         {
-            if (amountInStock < 10)
+            if (AmountInStock < 10)
             {
-                isBelowStoctThreshold = true;
+                IsBelowStoctThreshold = true;
             }
         }
 
