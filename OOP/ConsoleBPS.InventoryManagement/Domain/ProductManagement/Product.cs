@@ -9,7 +9,7 @@ using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    public class Product
+    public partial class Product
     {
         private int id;
         private string name = string.Empty;
@@ -164,24 +164,6 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             }
 
             return sb.ToString();
-        }
-
-        private void UpdateLowStock()
-        {
-            if (AmountInStock < 10)
-            {
-                IsBelowStoctThreshold = true;
-            }
-        }
-
-        private void Log(string message)
-        {
-            Console.WriteLine(message);
-        }
-
-        private string CreateSimpleProductRepresentation()
-        {
-            return $"Product {id} ({name})";
         }
     }
 }
