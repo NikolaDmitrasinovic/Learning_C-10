@@ -4,8 +4,10 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleBPS.InventoryManagement.Domain.General;
+using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
 
-namespace ConsoleBPS.InventoryManagement
+namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
     public class Product
     {
@@ -46,6 +48,8 @@ namespace ConsoleBPS.InventoryManagement
         public int AmountInStock { get; private set; }
         public bool IsBelowStoctThreshold { get; private set; }
 
+        public Price Price { get; set; }
+
         public Product(int Id, string name)
         {
             this.Id = Id;
@@ -56,11 +60,12 @@ namespace ConsoleBPS.InventoryManagement
         {
         }
 
-        public Product(int Id, string name, string? description, UnitType unitType, int maxAmountInStock)
+        public Product(int Id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock)
         {
             this.Id = Id;
             Name = name;
             Description = description;
+            Price = price;
             UnitType = unitType;
 
             maxItemsInStock = maxAmountInStock;
@@ -128,14 +133,14 @@ namespace ConsoleBPS.InventoryManagement
 
         public string DisplayDetailsShrot()
         {
-            return $"{id}. {name} \n{AmountInStock} item(s) in stock";
+            return $"{id}. {name}\n{Price} \n{AmountInStock} item(s) in stock";
         }
 
         public string DisplayDetailsFull()
         {
             StringBuilder sb = new();
 
-            sb.Append($"{id} {name} \n{description}\n{AmountInStock} item(s) in stock");
+            sb.Append($"{id} {name} \n{description}\n{Price}\n{AmountInStock} item(s) in stock");
 
             if (IsBelowStoctThreshold)
             {

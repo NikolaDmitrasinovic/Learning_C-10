@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleBPS.InventoryManagement
+namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
     public enum UnitType
     {
