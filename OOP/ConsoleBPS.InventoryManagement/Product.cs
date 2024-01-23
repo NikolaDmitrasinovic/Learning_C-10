@@ -45,6 +45,12 @@ namespace ConsoleBPS.InventoryManagement
         public int amountInStock { get; private set; }
         public bool isBelowStoctThreshold { get; private set; }
 
+        public Product(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
         public void UseProduct(int items)
         {
             if (items <= amountInStock)
