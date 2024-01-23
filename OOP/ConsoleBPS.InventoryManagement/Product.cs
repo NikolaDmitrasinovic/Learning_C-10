@@ -46,29 +46,26 @@ namespace ConsoleBPS.InventoryManagement
         public int AmountInStock { get; private set; }
         public bool IsBelowStoctThreshold { get; private set; }
 
-        public Product(int id, string name)
+        public Product(int Id, string name)
         {
-            Id = id;
-            Name = name;
+            this.Id = Id;
+            this.Name = name;
         }
 
-        public Product(int id) : this(id, string.Empty)
+        public Product(int Id) : this(Id, string.Empty)
         {
         }
 
-        public Product(int id, string name, string? description, UnitType unitType, int maxAmountInStock)
+        public Product(int Id, string name, string? description, UnitType unitType, int maxAmountInStock)
         {
-            Id = id;
+            this.Id = Id;
             Name = name;
             Description = description;
             UnitType = unitType;
 
             maxItemsInStock = maxAmountInStock;
 
-            if (AmountInStock < 10)
-            {
-                IsBelowStoctThreshold = false;
-            }
+            this.UpdateLowStock();
         }
 
         public void UseProduct(int items)
