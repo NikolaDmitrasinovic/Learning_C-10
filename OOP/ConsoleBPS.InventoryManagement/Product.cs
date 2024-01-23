@@ -15,9 +15,35 @@ namespace ConsoleBPS.InventoryManagement
 
         private int maxItemsInStock = 0;
         
-        private UnitType unitType;
-        private int amountInStock = 0;
-        private bool isBelowStoctThreshold = false;
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Name
+        {
+            get { return name; }
+            set { name = value.Length > 50 ? value[..50] : value; }
+        }
+
+        public string? Description
+        {
+            get { return description; }
+            set {
+                if (value == null)
+                {
+                    description = string.Empty;
+                }
+                else
+                {
+                    description = value.Length > 250 ? value[..250] : value;
+                }
+            }
+        }
+
+        public int amountInStock { get; private set; }
+        public bool isBelowStoctThreshold { get; private set; }
 
         public void UseProduct(int items)
         {
@@ -59,7 +85,7 @@ namespace ConsoleBPS.InventoryManagement
 
         public string DisplayDetailsShrot()
         {
-            return $"{id}. {name} \n{amountInStock} item(s) in stock");
+            return $"{id}. {name} \n{amountInStock} item(s) in stock";
         }
 
         public string DisplayDetailsFull()
