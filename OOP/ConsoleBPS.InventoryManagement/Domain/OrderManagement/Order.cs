@@ -22,5 +22,23 @@ namespace ConsoleBPS.InventoryManagement.Domain.OrderManagement
 
             OrderItems = new List<OrderItem>();
         }
+
+        public string ShowOrderDetails()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Order ID: {Id}");
+            sb.AppendLine($"Order fulfilment date: {OrderFulfilmentDate.ToShortTimeString()}");
+
+            if (OrderItems != null)
+            {
+                foreach (OrderItem item in OrderItems)
+                {
+                    sb.AppendLine($"{item.ProductId}. {item.ProductName}: {item.AmountOrdered}");
+                }
+            }
+
+            return sb.ToString();
+        }
     }
 }

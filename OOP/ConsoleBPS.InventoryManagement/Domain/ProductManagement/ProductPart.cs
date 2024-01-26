@@ -19,7 +19,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             }
         }
 
-        private void UpdateLowStock()
+        public void UpdateLowStock()
         {
             if (AmountInStock < 10)
             {
