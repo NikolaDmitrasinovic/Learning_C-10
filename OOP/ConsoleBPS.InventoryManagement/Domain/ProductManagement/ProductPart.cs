@@ -9,21 +9,21 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
     public partial class Product
     {
-        public static int StockThreshhold = 5;
+        public static int StockTreshold = 5;
 
         public static void ChangeStockThreshold(int newStatickTreshhold)
         {
             if (newStatickTreshhold > 0)
             {
-                StockThreshhold = newStatickTreshhold;
+                StockTreshold = newStatickTreshhold;
             }
         }
 
         public void UpdateLowStock()
         {
-            if (AmountInStock < 10)
+            if (AmountInStock < StockTreshold)
             {
-                IsBelowStoctThreshold = true;
+                IsBelowStockTreshold = true;
             }
         }
 

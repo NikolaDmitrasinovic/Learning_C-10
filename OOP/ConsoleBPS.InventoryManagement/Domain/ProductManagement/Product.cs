@@ -46,7 +46,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 
         public UnitType UnitType { get; set; }
         public int AmountInStock { get; private set; }
-        public bool IsBelowStoctThreshold { get; private set; }
+        public bool IsBelowStockTreshold { get; private set; }
 
         public Price Price { get; set; }
 
@@ -111,7 +111,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 
             if (AmountInStock > 10)
             {
-                IsBelowStoctThreshold = false;
+                IsBelowStockTreshold = false;
             }
         }
 
@@ -131,7 +131,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             Log(reason);
         }
 
-        public string DisplayDetailsShrot()
+        public string DisplayDetailsShort()
         {
             return $"{id}. {name}\n{Price} \n{AmountInStock} item(s) in stock";
         }
@@ -142,7 +142,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 
             sb.Append($"{id} {name} \n{description}\n{Price}\n{AmountInStock} item(s) in stock");
 
-            if (IsBelowStoctThreshold)
+            if (IsBelowStockTreshold)
             {
                 sb.Append(("\n!!STOCK Low!!"));
             }
@@ -158,7 +158,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 
             sb.Append(extraDetails);
 
-            if (IsBelowStoctThreshold)
+            if (IsBelowStockTreshold)
             {
                 sb.Append(("\n!!STOCK Low!!"));
             }
