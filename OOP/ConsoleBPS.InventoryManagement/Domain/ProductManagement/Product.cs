@@ -44,7 +44,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             }
         }
 
-        public UnitType UnitType { get; private set; }
+        public UnitType UnitType { get; set; }
         public int AmountInStock { get; private set; }
         public bool IsBelowStoctThreshold { get; private set; }
 

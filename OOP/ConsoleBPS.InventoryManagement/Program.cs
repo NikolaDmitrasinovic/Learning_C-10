@@ -7,8 +7,25 @@ namespace ConsoleBPS.InventoryManagement
     {
         static void Main(string[] args)
         {
-            Price samplePrice = new Price(10, Currency.Euro);
-            Product p1 = new Product(1, "Sugar", "Lorem ipsum", samplePrice, UnitType.PerKg, 100);
+            //Price samplePrice = new Price(10, Currency.Euro);
+            Price samplePrice = new Price() { ItemPrice = 10, Currency = Currency.Euro };
+
+            //Product p1 = new Product(1, "Sugar", "Lorem ipsum", samplePrice, UnitType.PerKg, 100);
+            Product p1 = new Product(1) { Name = "Sugar", Description = "Lorem ipsum", Price = samplePrice, UnitType = UnitType.PerKg };
+
+            var p2 = new Product(2)
+            {
+                Name = "Cake decorations", Description = "Lorem ipsum",
+                Price = new Price() { ItemPrice = 8, Currency = Currency.Euro }, UnitType = UnitType.PerItem
+            };
+
+            var p3 = new Product(2)
+            {
+                Name = "Strawberry",
+                Description = "Lorem ipsum",
+                Price = new Price() { ItemPrice = 3, Currency = Currency.Euro },
+                UnitType = UnitType.PerBox
+            };
 
             p1.IncreaseStock(10);
             p1.Description = "Sample description";
