@@ -1,18 +1,12 @@
 ﻿using ConsoleBPS.InventoryManagement.Domain.General;
 using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleBPS.InventoryManagement
 {
     internal class ProductRepository
     {
-        private string directory = Directory.GetCurrentDirectory();
-        private string productFileName = "\\products.txt";
+        private string directory = Directory.GetCurrentDirectory() + @"..\..\..\..\";
+        private string productFileName = "products.txt";
 
         private void CheckForExistingProductFile()
         {
@@ -76,7 +70,7 @@ namespace ConsoleBPS.InventoryManagement
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(xcp.Message);
             }
-            catch(Exception xcp)
+            catch (Exception xcp)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(xcp.Message);
