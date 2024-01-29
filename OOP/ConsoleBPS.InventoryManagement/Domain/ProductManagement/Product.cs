@@ -9,7 +9,7 @@ using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    public partial class Product
+    public partial class Product : System.Object
     {
         private int id;
         private string name = string.Empty;

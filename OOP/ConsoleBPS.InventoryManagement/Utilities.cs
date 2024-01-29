@@ -23,6 +23,8 @@ namespace BethanysPieShop.InventoryManagement
             bp.UseProduct(10);
             //bp.DecreaseStock(10, "Test");
 
+            bp.ToString();
+
             ProductRepository productRepository = new();
             inventory = productRepository.LoadProductsFromFile();
 
