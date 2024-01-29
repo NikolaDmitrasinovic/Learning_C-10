@@ -67,6 +67,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             Description = description;
             Price = price;
             UnitType = unitType;
+            AmountInStock = maxAmountInStock;
 
             maxItemsInStock = maxAmountInStock;
 

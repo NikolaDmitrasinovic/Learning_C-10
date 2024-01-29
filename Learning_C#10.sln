@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OOP", "OOP", "{2D3168E1-A056-4B40-BD3C-AFD023D3ADDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleBPS.InventoryManagement", "OOP\ConsoleBPS.InventoryManagement\ConsoleBPS.InventoryManagement.csproj", "{09A445BF-EF68-4D73-B98C-B7D550558A82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleBPS.InventoryManagement", "OOP\ConsoleBPS.InventoryManagement\ConsoleBPS.InventoryManagement.csproj", "{09A445BF-EF68-4D73-B98C-B7D550558A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBPS.InventoryManagement", "OOP\TestBPS.InventoryManagement\TestBPS.InventoryManagement.csproj", "{73CD4121-912B-45F5-87B3-CCD0025949DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +19,17 @@ Global
 		{09A445BF-EF68-4D73-B98C-B7D550558A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09A445BF-EF68-4D73-B98C-B7D550558A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09A445BF-EF68-4D73-B98C-B7D550558A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73CD4121-912B-45F5-87B3-CCD0025949DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73CD4121-912B-45F5-87B3-CCD0025949DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73CD4121-912B-45F5-87B3-CCD0025949DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73CD4121-912B-45F5-87B3-CCD0025949DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{09A445BF-EF68-4D73-B98C-B7D550558A82} = {2D3168E1-A056-4B40-BD3C-AFD023D3ADDD}
+		{73CD4121-912B-45F5-87B3-CCD0025949DF} = {2D3168E1-A056-4B40-BD3C-AFD023D3ADDD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {448B8322-8F56-42E2-84E0-5E1FDACF8381}
