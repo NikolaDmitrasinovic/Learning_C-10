@@ -27,12 +27,12 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             }
         }
 
-        private void Log(string message)
+        protected void Log(string message)
         {
             Console.WriteLine(message);
         }
 
-        private string CreateSimpleProductRepresentation()
+        protected string CreateSimpleProductRepresentation()
         {
             return $"Product {id} ({name})";
         }

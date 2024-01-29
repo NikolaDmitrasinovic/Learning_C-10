@@ -61,7 +61,27 @@ namespace ConsoleBPS.InventoryManagement
                     if (!success)
                         maxItemsInStock = 100;
 
-                    Product product = new Product(productId, name, description, new Price() { ItemPrice = itemPrice, Currency = currency }, unitType, maxItemsInStock);
+                    success = int.TryParse(productSplits[8], out int amountPerBox);
+                    if (success)
+                        amountPerBox = 1;
+
+                    string productType = productSplits[7];
+                    Product product = null;
+                    switch (productType)
+                    {
+                        case "1":
+                            product = new BoxedProduct(productId, name, description, new Price() { ItemPrice = itemPrice, Currency = currency }, unitType, maxItemsInStock, amountPerBox);
+                            break;
+                        case "2":
+                            product = new FreshProduct(productId, name, description, new Price() { ItemPrice = itemPrice, Currency = currency }, unitType, maxItemsInStock);
+                            break;
+                        case "3":
+                            product = new BulkProduct(productId, name, description, new Price() { ItemPrice = itemPrice, Currency = currency }, unitType, maxItemsInStock, amountPerBox);
+                            break;
+                        case "4":
+                            product = new Product(productId, name, description, new Price() { ItemPrice = itemPrice, Currency = currency }, unitType, maxItemsInStock);
+                            break;
+                    }
                     products.Add(product);
                 }
             }

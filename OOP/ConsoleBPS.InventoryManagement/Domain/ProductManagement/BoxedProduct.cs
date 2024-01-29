@@ -14,18 +14,19 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             set { amountPerBox = value; }
         }
 
-        public BoxedProduct(int Id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock) 
+        public BoxedProduct(int Id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock, int amoutPerBox) 
             : base(Id, name, description, price, unitType, maxAmountInStock)
         {
+            AmountPerBox = amoutPerBox;
         }
 
-        public string DisplayBoxProductDetails(string extraDetails)
+        public override string DisplayDetailsFull(string extraDetails)
         {
             StringBuilder sb = new();
 
-            sb.Append($"{Id} {Name} \n{Description}\n{AmountInStock} item(s) in stock");
+            sb.AppendLine("Boxed Product");
 
-            sb.Append(extraDetails);
+            sb.Append($"{Id} {Name} \n{Description}\n{AmountInStock} item(s) in stock");
 
             if (IsBelowStockTreshold)
             {
@@ -35,7 +36,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             return sb.ToString();
         }
 
-        public void UseBoxProduct(int items)
+        public override void UseProduct(int items)
         {
             int smallestMultiple = 0;
             int batchSize;
@@ -50,7 +51,52 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
                 }
             }
 
-            UseProduct(batchSize);
+            base.UseProduct(batchSize);
         }
+
+        public override void IncreaseStock()
+        {
+            IncreaseStock(1);
+
+            AmountInStock += AmountPerBox;
+        }
+
+        public override void IncreaseStock(int amount)
+        {
+            int newStock = AmountInStock + amount * AmountPerBox;
+
+            if (newStock <= maxItemsInStock)
+            {
+                AmountInStock += amount * AmountPerBox;
+            }
+            else
+            {
+                AmountInStock = maxItemsInStock;
+                Log($"{CreateSimpleProductRepresentation} stock overflow. {newStock - AmountInStock} item(s) ordered that couldn't be stored.");
+            }
+
+            if (AmountInStock > 10)
+            {
+                IsBelowStockTreshold = false;
+            }
+        }
+
+        //public void UseBoxProduct(int items)
+        //{
+        //    int smallestMultiple = 0;
+        //    int batchSize;
+
+        //    while (true)
+        //    {
+        //        smallestMultiple++;
+        //        if (smallestMultiple * AmountPerBox > items)
+        //        {
+        //            batchSize = smallestMultiple * AmountPerBox;
+        //            break;
+        //        }
+        //    }
+
+        //    UseProduct(batchSize);
+        //}
     }
 }

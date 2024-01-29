@@ -8,15 +8,16 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
         string? description,
         Price price,
         UnitType unitType,
-        int maxAmountInStock)
-        : BoxedProduct(id, name, description, price, unitType, maxAmountInStock)
+        int maxAmountInStock,
+        int amountPerBox)
+        : BoxedProduct(id, name, description, price, unitType, maxAmountInStock, amountPerBox)
     {
         public DateTime ExpiryDateTime { get; set; }
         public string? StorageInstructions { get; set; }
 
-        public void UseFreshBoxedProduct(int items)
-        {
-            UseBoxProduct(items);
-        }
+        //public void UseFreshBoxedProduct(int items)
+        //{
+        //    UseBoxProduct(items);
+        //}
     }
 }

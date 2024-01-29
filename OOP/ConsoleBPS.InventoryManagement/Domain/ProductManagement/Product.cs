@@ -15,7 +15,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
         private string name = string.Empty;
         private string? description;
 
-        private int maxItemsInStock = 0;
+        protected int maxItemsInStock = 0;
         
         public int Id
         {
@@ -45,8 +45,8 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
         }
 
         public UnitType UnitType { get; set; }
-        public int AmountInStock { get; private set; }
-        public bool IsBelowStockTreshold { get; private set; }
+        public int AmountInStock { get; protected set; }
+        public bool IsBelowStockTreshold { get; protected set; }
 
         public Price Price { get; set; }
 
@@ -74,7 +74,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             this.UpdateLowStock();
         }
 
-        public void UseProduct(int items)
+        public virtual void UseProduct(int items)
         {
             if (items <= AmountInStock)
             {
@@ -91,12 +91,12 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             }
         }
 
-        public void IncreaseStock()
+        public virtual void IncreaseStock()
         {
             AmountInStock++;
         }
 
-        public void IncreaseStock(int amount)
+        public virtual void IncreaseStock(int amount)
         {
             int newStock = AmountInStock + amount;
 
@@ -151,7 +151,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             return sb.ToString();
         }
 
-        public string DisplayDetailsFull(string extraDetails)
+        public virtual string DisplayDetailsFull(string extraDetails)
         {
             StringBuilder sb = new();
 
