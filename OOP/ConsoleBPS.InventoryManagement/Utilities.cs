@@ -16,6 +16,9 @@ namespace BethanysPieShop.InventoryManagement
             //inventory.Add(new Product(2, "Cake decorations", "Lorem ipsum", new Price() { ItemPrice = 8, Currency = Currency.Euro }, UnitType.PerItem, 20));
             //inventory.Add(new Product(3, "Strawberry", "Lorem ipsum", new Price() { ItemPrice = 3, Currency = Currency.Euro }, UnitType.PerBox, 10));
 
+            var rp = new RegularProduct(7, "Pie candles", "Lorem ipsum", new Price() { ItemPrice = 10, Currency = Currency.Euro }, UnitType.PerItem, 100);
+            double value = rp.ConvertProductPrice(Currency.Dollar);
+
             BoxedProduct bp = new BoxedProduct(6, "Eggs", "Lorem ipsum",
                 new Price() { ItemPrice = 25, Currency = Currency.Euro }, UnitType.PerKg, 100, 1);
 
