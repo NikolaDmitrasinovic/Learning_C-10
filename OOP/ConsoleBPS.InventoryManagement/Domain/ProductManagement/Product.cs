@@ -9,7 +9,7 @@ using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    public partial class Product : System.Object
+    public abstract partial class Product : System.Object
     {
         private int id;
         private string name = string.Empty;
@@ -91,10 +91,11 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             }
         }
 
-        public virtual void IncreaseStock()
-        {
-            AmountInStock++;
-        }
+        //public virtual void IncreaseStock()
+        //{
+        //    AmountInStock++;
+        //}
+        public abstract void IncreaseStock();
 
         public virtual void IncreaseStock(int amount)
         {

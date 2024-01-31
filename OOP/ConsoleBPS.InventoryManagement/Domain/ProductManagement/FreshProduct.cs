@@ -13,5 +13,10 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             : base(Id, name, description, price, unitType, maxAmountInStock)
         {
         }
+
+        public override void IncreaseStock()
+        {
+            AmountInStock++;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace TestBPS.InventoryManagement
         public void UseProduct_Reduces_AmountInStock()
         {
             // Arrange
-            var product = new Product(1, "Sugar", "Lorem Ipsum",
+            var product = new RegularProduct(1, "Sugar", "Lorem Ipsum",
                 new Price() { ItemPrice = 10, Currency = Currency.Euro }, UnitType.PerKg, 100);
 
             // Act
@@ -23,7 +23,7 @@ namespace TestBPS.InventoryManagement
         public void UseProduct_REduces_AmountInStock_StockBelowThreshold()
         {
             // Arrange
-            var product = new Product(1, "Sugar", "Lorem Ipsum",
+            var product = new RegularProduct(1, "Sugar", "Lorem Ipsum",
                 new Price() { ItemPrice = 10, Currency = Currency.Euro }, UnitType.PerKg, 100);
 
             var increaseValue = 100;

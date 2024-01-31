@@ -178,11 +178,11 @@ namespace BethanysPieShop.InventoryManagement
             switch (productType)
             {
                 case "1":
-                    newProduct = new Product(newId, name, description, new Price() { ItemPrice = price, Currency = currency }, unitType, maxInStock);
+                    newProduct = new RegularProduct(newId, name, description, new Price() { ItemPrice = price, Currency = currency }, unitType, maxInStock);
                     break;
 
                 case "2":
-                    newProduct = new BulkProduct(newId++, name, description, new Price() { ItemPrice = price, Currency = currency }, unitType, maxInStock, 5);
+                    newProduct = new BulkProduct(newId++, name, description, new Price() { ItemPrice = price, Currency = currency }, maxInStock);
                     break;
 
                 case "3":

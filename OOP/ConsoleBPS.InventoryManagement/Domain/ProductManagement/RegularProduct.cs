@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    internal class FreshBoxedProduct : Product
+    public class RegularProduct : Product
     {
-        public FreshBoxedProduct(int Id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock) 
+        public RegularProduct(int Id, string name, string? description, Price price, UnitType unitType, int maxAmountInStock) 
             : base(Id, name, description, price, unitType, maxAmountInStock)
         {
         }
