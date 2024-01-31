@@ -66,7 +66,7 @@ namespace ConsoleBPS.InventoryManagement
                         amountPerBox = 1;
 
                     string productType = productSplits[7];
-                    Product product = null;
+                    Product product = null!;
                     switch (productType)
                     {
                         case "1":

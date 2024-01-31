@@ -395,7 +395,7 @@ namespace BethanysPieShop.InventoryManagement
                 Console.Write("Enter the ID of product: ");
                 selectedProductId = Console.ReadLine();
 
-                if (selectedProductId != "0")
+                if (selectedProductId != "0" && selectedProductId != null)
                 {
                     Product? selectedProduct = inventory.Where(p => p.Id == int.Parse(selectedProductId)).FirstOrDefault();
 

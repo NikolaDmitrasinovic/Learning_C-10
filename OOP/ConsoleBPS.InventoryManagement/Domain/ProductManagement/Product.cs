@@ -54,6 +54,7 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
         {
             this.Id = Id;
             this.Name = name;
+            Price = null!;
         }
 
         public Product(int Id) : this(Id, string.Empty)
