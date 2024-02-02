@@ -5,7 +5,7 @@ using System.Xml.Linq;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    public class BoxedProduct : Product, ISaveable
+    public class BoxedProduct : Product, ISaveable, ILoggable
     {
         private int amountPerBox;
 
@@ -85,6 +85,11 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
         public string ConvertToStringForSaving()
         {
             return $"{Id};{Name};{Description};{maxItemsInStock};{Price.ItemPrice};{(int)Price.Currency};{(int)UnitType};1;{AmountPerBox}";
+        }
+
+        void ILoggable.Log(string message)
+        {
+            throw new NotImplementedException();
         }
 
         //public void UseBoxProduct(int items)
