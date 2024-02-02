@@ -118,7 +118,7 @@ namespace BethanysPieShop.InventoryManagement
                         break;
 
                     case "3":
-                        //ShowCloneExistingProduct();
+                        ShowCloneExistingProduct();
                         break;
 
                     case "4":
@@ -132,6 +132,34 @@ namespace BethanysPieShop.InventoryManagement
             }
             while (userSelection != "0");
             ShowMainMenu();
+        }
+
+        private static void ShowCloneExistingProduct()
+        {
+            string? userSelection = string.Empty;
+            string? newId = string.Empty;
+
+            Console.WriteLine("Enter the ID of product to clone: ");
+            string? selectedProductId = Console.ReadLine();
+
+            if (selectedProductId != null)
+            {
+                Product? selectedProduct = inventory.Where(p => p.Id == int.Parse(selectedProductId)).FirstOrDefault();
+
+                if (selectedProduct != null)
+                {
+                    Console.WriteLine("Enter the new ID of the cloned product: ");
+                    newId = Console.ReadLine();
+
+                    Product? p = selectedProduct.Clone() as Product;
+
+                    if (p != null)
+                    {
+                        p.Id = int.Parse(newId);
+                        inventory.Add(p);
+                    }
+                }
+            }
         }
 
         private static void ShowCreateNewProduct()

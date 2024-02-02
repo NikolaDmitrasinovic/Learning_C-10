@@ -28,5 +28,10 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
         {
             AmountInStock++;
         }
+
+        public override object Clone()
+        {
+            return new BoxedProduct(0, Name, Description, new Price() { ItemPrice = Price.ItemPrice, Currency = Price.Currency }, UnitType, maxItemsInStock, AmountInStock);
+        }
     }
 }

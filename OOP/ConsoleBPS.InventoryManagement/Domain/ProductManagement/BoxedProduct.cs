@@ -92,6 +92,11 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             throw new NotImplementedException();
         }
 
+        public override object Clone()
+        {
+            return new BoxedProduct(0, Name, Description, new Price() { ItemPrice = Price.ItemPrice, Currency = Price.Currency }, UnitType, maxItemsInStock, AmountInStock);
+        }
+
         //public void UseBoxProduct(int items)
         //{
         //    int smallestMultiple = 0;

@@ -9,7 +9,7 @@ using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    public abstract partial class Product : System.Object
+    public abstract partial class Product : ICloneable
     {
         private int id;
         private string name = string.Empty;
@@ -168,5 +168,12 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 
             return sb.ToString();
         }
+
+        public abstract object Clone();
+
+        //public object Clone()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
