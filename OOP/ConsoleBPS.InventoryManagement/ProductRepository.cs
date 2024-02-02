@@ -1,5 +1,7 @@
-﻿using ConsoleBPS.InventoryManagement.Domain.General;
+﻿using ConsoleBPS.InventoryManagement.Domain.Contracts;
+using ConsoleBPS.InventoryManagement.Domain.General;
 using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
+using System.Text;
 
 namespace ConsoleBPS.InventoryManagement
 {
@@ -101,6 +103,24 @@ namespace ConsoleBPS.InventoryManagement
             }
 
             return products;
+        }
+
+        public void SaveToFile(List<ISaveable> saveables)
+        {
+            var sb = new StringBuilder();
+            string path = $"{directory}{productFileName}";
+
+            foreach (var item in saveables)
+            {
+                sb.Append(item.ConvertToStringForSaving());
+                sb.Append(Environment.NewLine);
+            }
+
+            File.WriteAllText(path, sb.ToString());
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Saved item successfully");
+            Console.ResetColor();
         }
     }
 }

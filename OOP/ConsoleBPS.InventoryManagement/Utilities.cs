@@ -1,4 +1,5 @@
 ﻿using ConsoleBPS.InventoryManagement;
+using ConsoleBPS.InventoryManagement.Domain.Contracts;
 using ConsoleBPS.InventoryManagement.Domain.General;
 using ConsoleBPS.InventoryManagement.Domain.OrderManagement;
 using ConsoleBPS.InventoryManagement.Domain.ProductManagement;
@@ -69,7 +70,7 @@ namespace BethanysPieShop.InventoryManagement
                     ShowSettingsMenu();
                     break;
                 case "4":
-                    //SaveAllData();
+                    SaveAllData();
                     break;
                 case "0":
                     break;
@@ -77,6 +78,26 @@ namespace BethanysPieShop.InventoryManagement
                     Console.WriteLine("Invalid selection. Please try again.");
                     break;
             }
+        }
+
+        private static void SaveAllData()
+        {
+            ProductRepository productRepository = new();
+
+            List<ISaveable> data = new List<ISaveable>();
+
+            foreach (var item in inventory)
+            {
+                if (item is ISaveable)
+                {
+                    data.Add((ISaveable)item);
+                }
+            }
+
+            productRepository.SaveToFile(data);
+
+            Console.Read();
+            ShowMainMenu();
         }
 
         private static void ShowInventoryManagementMenu()
