@@ -1,10 +1,11 @@
-﻿using ConsoleBPS.InventoryManagement.Domain.General;
+﻿using ConsoleBPS.InventoryManagement.Domain.Contracts;
+using ConsoleBPS.InventoryManagement.Domain.General;
 using System.Text;
 using System.Xml.Linq;
 
 namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
 {
-    public class BoxedProduct : Product
+    public class BoxedProduct : Product, ISaveable
     {
         private int amountPerBox;
 
@@ -79,6 +80,11 @@ namespace ConsoleBPS.InventoryManagement.Domain.ProductManagement
             {
                 IsBelowStockTreshold = false;
             }
+        }
+
+        public string ConvertToStringForSaving()
+        {
+            return $"{Id};{Name};{Description};{maxItemsInStock};{Price.ItemPrice};{(int)Price.Currency};{(int)UnitType};1;{AmountPerBox}";
         }
 
         //public void UseBoxProduct(int items)
